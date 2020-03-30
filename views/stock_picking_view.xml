@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record  id="stock_picking_view_stock_picking_form" model="ir.ui.view">
+		<field name="name">stock.picking.form</field>
+		<field name="model">stock.picking</field>        
+		<field name="inherit_id" ref="stock.view_picking_form"/>
+		<field name="arch" type="xml">			
+            <xpath expr="/form/sheet/notebook/page[3]/group/group/field[@name='priority']" position="after">
+                    <field name="sello"/>    
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page[3]/group/group/field[@name='priority']" position="after">
+                    <field name="ticket" />    
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page[3]/group/group/field[@name='priority']" position="after">
+                    <field name="date_trans"/>    
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page[3]/group/group/field[@name='priority']" position="after">
+                    <field name="date_delivery"/>    
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page[3]/group/group/field[@name='priority']" position="after">
+                    <field name="folio"/>    
+            </xpath>
+        </field>
+    </record>
+    <record id="batch_stock_picking_view_stock_picking_form" model="ir.ui.view">       
+        <field name="name">stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="/form/sheet/notebook/page[3]/group/group/field[@name='priority']" position="after">
+                <field name="batch_id"/>
+            </xpath>
+        </field>
+    </record>
+ 
+  <record id="operator_stock_picking_view_stock_picking_form" model="ir.ui.view">
+        <field name="name">stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+                 <xpath expr="/form/sheet/notebook/page[3]/group/group/field[@name='batch_id']" position="after">
+                    <field name="operator_id"/>
+                 </xpath>
+        </field>
+    </record>
+<!-- LOTE EN DEMANDA INICIAL -->
+    <!-- <record id="view_move_picking_form" model="ir.ui.view">
+        <field name="name">stock.move.picking.form</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_picking_form"/>
+        <field name="arch" type="xml">
+            <field name="location_dest_id" position="after">
+                <field name="batch_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_move_picking_tree" model="ir.ui.view">
+            <field name="name">stock.move.picking.tree</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_picking_tree"/>
+            <field name="arch" type="xml">
+                <field name="product_uom" position="after">
+                     <field name="batch_id"/>
+                         
+                     </field>
+            </field>
+        </record> -->
+</odoo>

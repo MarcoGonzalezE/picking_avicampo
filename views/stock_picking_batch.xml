@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sot_stock_picking_type_form_view" model="ir.ui.view">
+        <field name="name">stock.picking.batch.form.view</field>
+        <field name="model">stock.picking.batch</field>
+        <field name="arch" type="xml">
+            <form string="Batch">
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                    </group>                    
+                    <group>                             
+                            <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record> 
+    <record id="sot_stock_picking_type_tree_view" model="ir.ui.view">
+        <field name="name">stock.picking.batch.tree.view</field>
+        <field name="model">stock.picking.batch</field>
+        <field name="arch" type="xml">
+            <tree string="Batch">
+                <field name="name"/>        
+            </tree>
+        </field>
+    </record>
+
+    <record id="sot_stock_picking_type_search_view" model="ir.ui.view">
+        <field name="name">stock.picking.batch.search.view</field>
+        <field name="model">stock.picking.batch</field>
+        <field name="arch" type="xml">
+            <search string="Batch">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="sot_stock_picking_type_action" model="ir.actions.act_window">
+        <field name="name">Orden de Venta Lotes</field>
+        <field name="res_model">stock.picking.batch</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="sot_stock_picking_type_tree_view"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Click para establecer un nuevo lote</p>
+        </field>
+    </record>
+
+    <record id="sot_stock_picking_type_action_form" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="sot_stock_picking_type_form_view"/>
+        <field name="act_window_id" ref="sot_stock_picking_type_action"/>
+    </record>
+
+    <record id="sot_stock_picking_type_action_tree" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="sot_stock_picking_type_tree_view"/>
+        <field name="act_window_id" ref="sot_stock_picking_type_action"/>
+    </record>
+
+
+     <!-- lotes -->
+     <record id="sale_order_batch_form_view" model="ir.ui.view">
+        <field name="name">stock.picking.batch.form</field>
+        <field name="model">stock.picking.batch</field>
+        <field name="arch" type="xml">
+            <form string="Lotes">
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                        </div>
+                    </group>                    
+                    <group>
+                        <field name="name"/>
+                        <field name="state"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record> 
+
+    <record id="sale_order_batch_tree_view" model="ir.ui.view">
+        <field name="name">stock.picking.batch.tree</field>
+        <field name="model">stock.picking.batch</field>
+        <field name="arch" type="xml">
+            <tree string="Lotes">
+                <field name="name"/>
+                <field name="state"/>        
+            </tree>
+        </field>
+    </record>
+
+     <!-- batch view config -->
+    <record id="sale_order_batch_action" model="ir.actions.act_window">
+        <field name="name">Configuracion Lotes</field>
+        <field name="res_model">stock.picking.batch</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="sale_order_batch_tree_view"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Click nuevo lote</p>
+        </field>
+    </record>
+    <menuitem id="sot_stock_picking_type_menu" parent="sales_team.menu_sale_config"
+              action="sot_stock_picking_type_action" sequence="20"/>
+    
+    <menuitem id="batch_menu" parent="sales_team.menu_sale_config"
+              action="sale_order_batch_action" sequence="20"/>
+</odoo>
