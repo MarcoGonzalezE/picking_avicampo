@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "picking_avicampo",
+    'name': "Costeo Avicampo",
     'summary': """
             Grupo Alvamex
          """,
@@ -33,6 +33,7 @@
         'views/stock_picking_operator.xml',
         'views/purchase_order_line.xml',
         'views/account_move.xml',
+        'views/mrp_production.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

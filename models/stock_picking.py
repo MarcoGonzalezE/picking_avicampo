@@ -41,12 +41,18 @@ class Picking(models.Model):
     #                     move.batch_id = sale_line.batch_id
 
 
-# class PickingMove(models.Model):
-#     _inherit = 'stock.move'
+class PickingMove(models.Model):
+    _inherit = 'stock.move'
 
-#     batch_id = fields.Many2one(comodel_name='stock.picking.batch', string="Lote")
-    # batch_id = fields.Many2one(
-    # comodel_name='stock.picking.batch', string="Lote", compute="_batch_sale")
+    batch_id = fields.Many2one(comodel_name='stock.picking.batch', string="Lote")
+    #batch_id = fields.Many2one(comodel_name='stock.picking.batch', string="Lote", compute="_batch_sale")
+    procurement_id = fields.Many2one()
+
+    # @api.multi
+    # @api.depends('procurement_id')
+    # def _batch_procurement(self):
+    #     if self.procurement_id:
+    #         self.batch_id = self.procurement_id.sale_line_id.batch_id
 
     # @api.multi
     # @api.depends('origin','product_id')
@@ -66,3 +72,31 @@ class Picking(models.Model):
     #                     if line.batch_id.name != 'NA':
     #                         if line.product_id == r.product_id and line.product_uom_qty == r.product_uom_qty and line.warehouse_id == r.warehouse_id:
     #                             r.batch_id = line.batch_id
+
+
+    # def _prepare_procurement_from_move(self):
+    #     rec = super(PickingMove,self)._prepare_procurement_from_move()
+    #     for rec in self:
+    #         origin = (self.group_id and (self.group_id.name + ":") or "") + (self.rule_id and self.rule_id.name or self.origin or self.picking_id.name or "/")
+    #         group_id = self.group_id and self.group_id.id or False
+    #         if self.rule_id:
+    #             if self.rule_id.group_propagation_option == 'fixed' and self.rule_id.group_id:
+    #                 group_id = self.rule_id.group_id.id
+    #             elif self.rule_id.group_propagation_option == 'none':
+    #                 group_id = False
+    #         return {
+    #             'name': self.rule_id and self.rule_id.name or "/",
+    #             'origin': origin,
+    #             'company_id': self.company_id.id,
+    #             'date_planned': self.date_expected,
+    #             'product_id': self.product_id.id,
+    #             'product_qty': self.product_uom_qty,
+    #             'product_uom': self.product_uom.id,
+    #             'location_id': self.location_id.id,
+    #             'move_dest_id': self.id,
+    #             'group_id': group_id,
+    #             'route_ids': [(4, x.id) for x in self.route_ids],
+    #             'warehouse_id': self.warehouse_id.id or (self.picking_type_id and self.picking_type_id.warehouse_id.id or False),
+    #             'priority': self.priority,
+    #             'batch_id': self.batch_id,
+    #         }
