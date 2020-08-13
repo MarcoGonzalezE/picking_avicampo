@@ -22,20 +22,6 @@ class PurchaseOrderLine(models.Model):
     price_subtotal = fields.Monetary()
     state = fields.Selection()
 
-    # @api.multi
-    # def _prepare_stock_moves(self, picking):
-    #     rec = super(PurchaseOrderLine, self)._prepare_stock_moves(picking)
-    #     res = []
-    #     for r in rec:
-    #         if self.batch == True:
-    #             tmp = template.copy()
-    #             tmp.update({
-    #                 'picking_id': picking.id,
-    #                 'batch_id': self.batch.id,
-    #             })
-    #             res.append(tmp)
-    #     return res
-
     @api.multi
     def _prepare_stock_moves(self, picking):
         rec = super(PurchaseOrderLine,self)._prepare_stock_moves(picking)

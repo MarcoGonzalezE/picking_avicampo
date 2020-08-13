@@ -79,11 +79,3 @@ class ProcurementOrder(models.Model):
 			'batch_id' : self.batch_id.id
 		})
 		return rec
-
-
-
-# class ProcurementRule(models.Model):
-#     """ Pull rules """
-#     _inherit = 'procurement.rule'
-
-#     batch_id = fields.Many2one('stock.picking.batch', string="Lote")

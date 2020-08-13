@@ -34,6 +34,7 @@
         'views/purchase_order_line.xml',
         'views/account_move.xml',
         'views/mrp_production.xml',
+        'views/account_invoice_line.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
