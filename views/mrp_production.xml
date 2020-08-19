@@ -7,15 +7,23 @@
             <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//button[@name='button_scrap']" position="after">
-                    <button name="movimientos" string="Sumar Movimientos" type="object" class="oe_highlight"/>                    
+                    <button name="movimientos" string="Sumar Movimientos" type="object" class="oe_highlight" groups="picking_avicampo.produccion_movimientos" states="done"/>                    
                 </xpath>
                 <xpath expr="//notebook[last()]" position="inside">
-                    <page string="Movimientos">
+                    <page string="Movimientos" groups="picking_avicampo.produccion_movimientos" states="done">
+                        <field name="account_move_ids">
+                            <tree>
+                                <field name="account" attrs="{'invisible': [('account','=', False)]}"/>
+                                <field name="debit" attrs="{'invisible': [('account','=', False)]}"/>
+                                <field name="credit" attrs="{'invisible': [('account','=', False)]}"/>
+                            </tree>
+                        </field>
                         <field name="move_ids">
                             <tree>
-                                <field name="product_id"/>
-                                <field name="qty"/>
-                                <field name="price_total"/>
+                                <field name="product_id" attrs="{'invisible': [('product_id','=', False)]}"/>
+                                <field name="qty" attrs="{'invisible': [('product_id','=', False)]}"/>
+                                <field name="debit" attrs="{'invisible': [('product_id','=', False)]}"/>
+                                <field name="credit" attrs="{'invisible': [('product_id','=', False)]}"/>
                             </tree>
                         </field>
                     </page>

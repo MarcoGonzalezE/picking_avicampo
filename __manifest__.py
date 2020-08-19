@@ -26,8 +26,9 @@
     'depends': ['stock','purchase', 'sale', 'account'],
 
     # always loaded
-    'data': [
-        # 'security/ir.model.access.csv',
+    'data': [        
+        'security/grupos.xml',
+        'security/ir.model.access.csv',
         'views/stock_picking_view.xml',
         'views/stock_picking_batch.xml',
         'views/stock_picking_operator.xml',
