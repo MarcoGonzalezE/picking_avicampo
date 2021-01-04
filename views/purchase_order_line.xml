@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<!-- LOTE Y VEHICULO EN LINEA DE PEDIDO -->
 	<record id="purchase_order_line_batch_form" model="ir.ui.view">
 		<field name="name">purchase.order.line.form</field>
 		<field name="model">purchase.order</field>
 		<field name="inherit_id" ref="purchase.purchase_order_form"/>
         <field name="arch" type="xml">
         	<xpath expr="/form/sheet/notebook/page/field/tree/field[@name='date_planned']" position="after">
-                <field name="batch"/>
+                <field name="batch" domain="[('state', '=', 'enable')]" options="{'no_quick_create': true,'no_create ': True, 'no_create_edit' : True}"/>
             </xpath>
             <xpath expr="/form/sheet/notebook/page/field/tree/field[@name='date_planned']" position="after">
                 <field name="fleet"/>
